@@ -1,0 +1,42 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: order-server
+  namespace: aom-custom-metrics-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order-server
+      version: v1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: order-server
+        version: v1
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "5001"
+        prometheus.io/path: "/metrics"
+        prometheus.io/scheme: "http"
+        # metrics.alpha.kubernetes.io/custom-endpoints: '[{"api":"prometheus","path":"/metrics","port":"5001","names":""}]'
+    spec:
+      containers:
+        - name: order-server
+          image: swr.cn-east-3.myhuaweicloud.com/aom-org/order-server:2.0.3
+          resources:
+            limits:
+              cpu: 250m
+              memory: 512Mi
+            requests:
+              cpu: 250m
+              memory: 512Mi
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      imagePullSecrets:
+        - name: default-secret
+
