@@ -6,5 +6,7 @@
 **/.DS_Store
 
 **/target
+*.jar
+*.jar.original
 
 
