@@ -1,3 +1,12 @@
-*.class
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-target/
+
+
+# misc
+.DS_Store
+
+**/target
+
+**/*.class
+
+
