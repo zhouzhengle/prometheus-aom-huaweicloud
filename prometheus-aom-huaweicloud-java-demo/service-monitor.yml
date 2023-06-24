@@ -1,7 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: service-monitor-prometheus-aom-huaweicloud-java-demo # 填写一个唯一名称
+  name: service-monitor-prometheus-aom-huaweicloud-java-demo1 # 填写一个唯一名称
   namespace: aom-custom-metrics-demo # namespace固定，不要修改
 spec:
   endpoints:
@@ -13,4 +13,4 @@ spec:
     - aom-custom-metrics-demo 
   selector: # 填写要监控service的Label值，以定位目标service
     matchLabels:
-      k8sapp: spring-boot-aom-demo 
+      app: prometheus-aom-huaweicloud-java-demo 
